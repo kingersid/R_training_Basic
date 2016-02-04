@@ -26,3 +26,28 @@ length(occupation[occupation=='NA']) # ans : 50
 data$Age_fct <- factor(data$Age,levels=c("<20","20-30","30-40","40-58","> 58"))
 
 data$Age_fct
+
+# Ans 6
+
+LoyalRank <- data[data["Response"]=='Loyal',][c("ACT1","ACT2","ACT4","ACT5","ACT10","ACT14","ACT16","ACT17","ACT24","ACT26","ACT28","ACT30","ACT31","ACT32")]
+LoyalRank_mat = as.matrix(LoyalRank)
+dim(LoyalRank_mat) # Ans : 208x14
+
+#Ans 7
+Near_from_work <- data[data$Age=='20-30' & data$Sex=='Male' & data$WorkplaceProximity>=5, ]
+Near_from_home <- data[data$Age=='20-30' & data$Sex=='Female' & data$ResidenceProximity>=5, ]
+
+colnames(Near_from_home)[which(names(Near_from_home) == "WorkplaceProximity")] <- "Distance_rating"
+colnames(Near_from_work)[which(names(Near_from_work) == "ResidenceProximity")] <- "Distance_rating"
+
+Distance_from_Bank <- rbind(Near_from_work,Near_from_home)
+Distance_from_Bank[c("Branch","Response","Occupation", "Age","Sex","Distance")]
+
+Near_from_work
+Distance_from_Bank
+#Create a subset with records of 20-30 Age Male with mid above score (>=5) on "WorkplaceProximity" named "Near_from_work"  and append it to another subset of 20-30 Age Female with mid above score(>=5) on "ResidenceProximity" named "Near_from_home". 
+#Names of both columns of distance should be "Distance_rating"
+#Combine both subsets to create a master table of customers who live/work near bank named "Distance_from_Bank.
+#Columns which should be taken in this combined data are Branch,Response,Occupation Age,Sex,Distance only
+#Display structure of the new dataset
+
