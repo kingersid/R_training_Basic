@@ -41,10 +41,9 @@ colnames(Near_from_home)[which(names(Near_from_home) == "WorkplaceProximity")] <
 colnames(Near_from_work)[which(names(Near_from_work) == "ResidenceProximity")] <- "Distance_rating"
 
 Distance_from_Bank <- rbind(Near_from_work,Near_from_home)
-Distance_from_Bank[c("Branch","Response","Occupation", "Age","Sex","Distance")]
+Distance_from_Bank <- Distance_from_Bank[c("Branch","Response","Occupation", "Age","Sex","Distance")]
 
-Near_from_work
-Distance_from_Bank
+str(Distance_from_Bank)
 #Create a subset with records of 20-30 Age Male with mid above score (>=5) on "WorkplaceProximity" named "Near_from_work"  and append it to another subset of 20-30 Age Female with mid above score(>=5) on "ResidenceProximity" named "Near_from_home". 
 #Names of both columns of distance should be "Distance_rating"
 #Combine both subsets to create a master table of customers who live/work near bank named "Distance_from_Bank.
